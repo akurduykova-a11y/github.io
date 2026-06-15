@@ -283,7 +283,7 @@
 <header>
     <div class="header-container">
         <div class="logo-area">
-            <img src="gerb.jpg" alt="Герб ЛГТУ" loading="lazy" onerror="this.src='https://placehold.co/80x80/5e1326/e6b422?text=ЛГТУ';">
+            <img src="gerb.jpg" alt="Герб ЛГТУ" loading="lazy">
             <h1>СтудЛето 2026<br>Команда ЛГТУ</h1>
         </div>
         <nav>
@@ -302,7 +302,7 @@
             <div class="captain-container">
                 <div class="captain-flex">
                     <div class="captain-photo">
-                        <img src="Bueva.jpg" alt="Капитан Алина Буева" loading="lazy" onerror="this.src='https://placehold.co/400x400/5e1326/e6b422?text=АБ'">
+                        <img src="Bueva.jpg" alt="Капитан Алина Буева" loading="lazy">
                     </div>
                     <div class="captain-text">
                         <h2>Капитан: <span class="gold-text">Алина Буева</span></h2>
@@ -380,12 +380,11 @@
         members.forEach(member => {
             const block = document.createElement('div');
             block.className = 'person-block';
-            const firstLetter = member.name.charAt(0);
             block.innerHTML = `
                 <div class="person-card">
                     <h2>${member.name}</h2>
                     <div class="person-photo">
-                        <img src="${member.photo}" alt="${member.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/5e1326/e6b422?text=${firstLetter}'">
+                        <img src="${member.photo}" alt="${member.name}" loading="lazy">
                     </div>
                     <div class="person-reason">
                         <span class="reason-label">🌟 Почему в команде ЛГТУ?</span>
