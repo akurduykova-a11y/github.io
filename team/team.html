@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Команда ЛГТУ | СтудЛето 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
+            background-color: #4a0e1f;
+            color: #f5e2c1;
+            line-height: 1.5;
+        }
+
+        :root {
+            --burgundy-dark: #2c0a13;
+            --burgundy: #5e1326;
+            --burgundy-deep: #3d0c1c;
+            --gold: #e6b422;
+            --gold-light: #f5d47a;
+            --text-light: #fff0dc;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            color: var(--gold-light);
+            padding: 0.8rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-area img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            background: white;
+            border-radius: 12px;
+            padding: 4px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-left: 2px solid var(--gold);
+            padding-left: 15px;
+            color: var(--gold-light);
+        }
+
+        nav {
+            display: flex;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            color: #ffefd6;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            font-family: inherit;
+        }
+
+        .nav-btn:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        main {
+            margin-top: 85px;
+            height: calc(100vh - 85px);
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        .person-block {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 2rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(230, 180, 34, 0.2);
+        }
+
+        .person-card {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 2rem 2rem;
+            text-align: center;
+            border: 1px solid var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .person-card h2 {
+            font-size: 2.4rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .person-photo {
+            width: 220px;
+            height: 220px;
+            margin: 1.5rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            background: #2e0a16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .person-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-reason {
+            font-size: 1.25rem;
+            background: rgba(0,0,0,0.5);
+            padding: 1.2rem;
+            border-radius: 32px;
+            margin-top: 1rem;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .reason-label {
+            font-weight: bold;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .captain-full {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .captain-container {
+            max-width: 1000px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 2rem;
+            border: 1px solid var(--gold);
+        }
+
+        .captain-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .captain-photo img {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--gold);
+            background: #2f0d1a;
+        }
+
+        .captain-text h2 {
+            color: var(--gold);
+            font-size: 2rem;
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .intro-text, .vector-box {
+            margin-top: 1rem;
+        }
+
+        .vector-box {
+            background: rgba(230, 180, 34, 0.15);
+            padding: 1rem;
+            border-radius: 28px;
+        }
+
+        footer {
+            background: #1f0710;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--gold);
+            color: #cfb27c;
+        }
+
+        @media (max-width: 700px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .person-card h2 {
+                font-size: 1.8rem;
+            }
+            .person-photo {
+                width: 160px;
+                height: 160px;
+            }
+            .captain-photo img {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo-area">
+            <img src="gerb.jpg" alt="Герб ЛГТУ" loading="lazy" onerror="this.src='https://placehold.co/80x80/5e1326/e6b422?text=ЛГТУ';">
+            <h1>СтудЛето 2026<br>Команда ЛГТУ</h1>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-page="home">Главная</button>
+            <button class="nav-btn" data-page="creative">Творчество</button>
+            <button class="nav-btn" data-page="sport">Спорт</button>
+            <button class="nav-btn" data-page="education">Образовалка</button>
+            <button class="nav-btn" data-page="media">СМИ</button>
+        </nav>
+    </div>
+</header>
+
+<main id="main-scroll">
+    <div id="home" class="page active-page">
+        <div class="captain-full">
+            <div class="captain-container">
+                <div class="captain-flex">
+                    <div class="captain-photo">
+                        <img src="Bueva.jpg" alt="Капитан Алина Буева" loading="lazy" onerror="this.src='https://placehold.co/400x400/5e1326/e6b422?text=АБ'">
+                    </div>
+                    <div class="captain-text">
+                        <h2>Капитан: <span class="gold-text">Алина Буева</span></h2>
+                        <div class="intro-text">
+                            <strong>Почему я капитан?</strong><br>
+                            Я вижу потенциал каждого и готова вести команду ЛГТУ к победе на СтудЛето 2026.
+                        </div>
+                        <div class="vector-box">
+                            <h3>🎯 Вектор: Молодые тоже крутые</h3>
+                            <p>Эти ребята голодные до побед и готовы проявить себя, большинство из них - перворазники, которым есть что доказывать. Наша команда — это будущее ЛГТУ в рамках СтудЛета, где спорт, наука, творчество и медиа работают как единый механизм.</p>
+                        </div>
+                        <p><em>«Кубку пора оказаться в ЛГТУ, если не получалось у старичков, то надо пробовать другим»</em></p>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <p style="color: var(--gold);">✨ ЛГТУ СтудЛето 2026 ✨</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="creative" class="page">
+        <div id="creativeContainer"></div>
+    </div>
+
+    <div id="sport" class="page">
+        <div id="sportContainer"></div>
+    </div>
+
+    <div id="education" class="page">
+        <div id="educationContainer"></div>
+    </div>
+
+    <div id="media" class="page">
+        <div id="mediaContainer"></div>
+    </div>
+</main>
+
+<footer>
+    <p>Липецкий государственный технический университет | Команда «СтудЛето 2026»</p>
+</footer>
+
+<script>
+    const teamData = {
+        creative: [
+            { name: "Сергей Мозолевских", reason: "Любой молодой команде нужен опытный игрок. Сережа уже ездил на СтудЛето, знает как все работает, стал лицом фестиваля в том году (в команде Квузов). Он важный элемент в творчестве", photo: "photos/sergey.jpg" },
+            { name: "Всеволод Михеев", reason: "Человек, который тоже уже был на СтудЛете, креативный, любит много и усердно работать", photo: "photos/vsevolod.jpg" },
+            { name: "Елизавета Костенева", reason: "Председатель СтудКлуба \"Гелиос\", сценарист, моя правая рука. Мы много работали совместно, с ней не нужно выстраивать никаких взаимоотношений, просто берем и делаем", photo: "photos/elizaveta.jpg" },
+            { name: "Юлия Чупракова", reason: "Юля закрывает вокал в нашей команде, помимо этого, она хорошо танцует и сможет поставить фольклор", photo: "photos/yulia.jpg" },
+            { name: "Анастасия Шеллер", reason: "Прекрасный постановщик танцев, у которого по личным причинам не получалось проявить себя в творческом коллективе, но человек показал себя с лучшей стороны на этажах. Ее чувство стиля станет важным элементом в танцах", photo: "photos/anastasia.jpg" },
+            { name: "Мария Бакунова", reason: "Руководитель Этажей, постановщик танцев, идейная девчонка, которая поможет в разных аспектах в творчестве", photo: "photos/maria.jpg" }
+        ],
+        sport: [
+            { name: "Павел Будюкин", reason: "Разносторонний спортсмен. Помогает закрыть не только спортивное направление, но и творческое. Опытный фестивальщик, который будет помогать мне не только с порте и творчестве", photo: "photos/pavel.jpg" },
+            { name: "Илья Суров", reason: "Миллионер, спортсмен, филантроп. Любой вид спорта, марш-бросок, творчество и просто веселый человек", photo: "photos/ilya.jpg" },
+            { name: "Дмитрий Дианов", reason: "Спортсмен с большим потенциалом. Умеет брать на себя ответственность и помогать команде в сложных моментах", photo: "photos/dmitry.jpg" },
+            { name: "Александр Беспавлов", reason: "Волейболист, который может помочь и в других видах спорта. Верю, что на этот раз получится пробежать марш-бросок", photo: "photos/alexander.jpg" },
+            { name: "Наталья Лимонтьева", reason: "Талантливая спортсменка, которая готова закрывать несколько направлений. Азарт и стремление к победе — её главные качества", photo: "photos/natalya.jpg" }
+        ],
+        education: [
+            { name: "Екатерина Борецкая", reason: "Лучший зам председателя профбюро 2026. Ответственная и горит своим делом. В образовательном направлении важная часть механизма", photo: "photos/ekaterina_b.jpg" },
+            { name: "Тимур Долматов", reason: "Опытный человек в рамках СтудЛета. Помимо образовательного направления будет полезен в спорте", photo: "photos/timur.jpg" },
+            { name: "Кристина Пьянкова", reason: "Руководитель Студенческого кураторства. Поможет как в образовательном направлении, так и в СМИ", photo: "photos/kristina.jpg" }
+        ],
+        media: [
+            { name: "Сергей Чирков", reason: "Видеограф, собрал на областной СтудВесне всевозможные номинации. Уже ездил на студ лето. Помимо медиа, может помочь и с творчеством. Без преувеличения лучший видеограф в ЛГТУ на данный момент", photo: "photos/sergey_ch.jpg" },
+            { name: "Алексей Коновалов", reason: "Фотограф, который неоднократно показывал себя как человека, который может из ничего сделать хорошее фото. Также силен в образовательном направлении", photo: "photos/alexey.jpg" }
+        ]
+    };
+
+    function renderVerticalBlocks(containerId, members) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        members.forEach(member => {
+            const block = document.createElement('div');
+            block.className = 'person-block';
+            const firstLetter = member.name.charAt(0);
+            block.innerHTML = `
+                <div class="person-card">
+                    <h2>${member.name}</h2>
+                    <div class="person-photo">
+                        <img src="${member.photo}" alt="${member.name}" loading="lazy" onerror="this.src='https://placehold.co/400x400/5e1326/e6b422?text=${firstLetter}'">
+                    </div>
+                    <div class="person-reason">
+                        <span class="reason-label">🌟 Почему в команде ЛГТУ?</span>
+                        ${member.reason}
+                    </div>
+                </div>
+            `;
+            container.appendChild(block);
+        });
+    }
+
+    function renderAllSections() {
+        renderVerticalBlocks('creativeContainer', teamData.creative);
+        renderVerticalBlocks('sportContainer', teamData.sport);
+        renderVerticalBlocks('educationContainer', teamData.education);
+        renderVerticalBlocks('mediaContainer', teamData.media);
+    }
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active-page');
+        });
+        const activePage = document.getElementById(tabId);
+        if (activePage) activePage.classList.add('active-page');
+        
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-page') === tabId) {
+                btn.classList.add('active');
+            }
+        });
+        
+        const scrollContainer = document.getElementById('main-scroll');
+        if (scrollContainer) scrollContainer.scrollTop = 0;
+    }
+
+    function bindNavEvents() {
+        const btns = document.querySelectorAll('.nav-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const pageId = btn.getAttribute('data-page');
+                if (pageId) switchTab(pageId);
+            });
+        });
+    }
+
+    renderAllSections();
+    bindNavEvents();
+</script>
+</body>
+</html>
